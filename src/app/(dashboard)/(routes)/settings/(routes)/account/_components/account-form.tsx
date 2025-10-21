@@ -55,7 +55,7 @@ export function AccountForm() {
       })),
       duration: account?.details.duration,
     })
-  }, [ account ])
+  }, [account, form])
 
   return (
     <Form {...form}>
@@ -246,7 +246,7 @@ export function AccountForm() {
               )}
             />
             <p className="text-xs text-gray-500 -mt-2">
-              🗖️ Determines how often users will be billed. E.g., "Monthly" means users are charged once per month.
+              🗖️ Determines how often users will be billed. E.g., &quot;Monthly&quot; means users are charged once per month.
             </p>
           </>
         )}

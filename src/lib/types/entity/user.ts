@@ -4,8 +4,8 @@ export type IGetSubscriber = { id: string; };
 
 export type IGetSubscribers = { 
     account_id: string;
-    from?: Date;
-    to?: Date;
+    account?: Date;
+    user?: Date;
     amount_min?: number;
     amount_max?: number;
     page?: number;

@@ -15,12 +15,15 @@ export default function SignUpPage() {
       </div>
       
       {/* Logo in top left */}
-      <div className="relative z-10 p-6">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg">
-            <Icons.logo className="w-6 h-6 text-blue-600" />
+      <div className="relative z-10 p-5">
+        <div className="flex items-center space-x-2.5">
+          <div className="w-10 h-10 bg-gradient-to-br from-[#1A202C] to-[#00BCD4] rounded-xl flex items-center justify-center shadow-lg">
+            <Icons.logo className="w-6 h-6" />
           </div>
-          <span className="text-white font-bold text-xl">Zypay Inc</span>
+          <div className="flex flex-col">
+            <span className="text-white font-bold text-base">Zypay</span>
+            <span className="text-gray-300 text-xs">Secure Crypto Payments</span>
+          </div>
         </div>
       </div>
 
@@ -30,34 +33,34 @@ export default function SignUpPage() {
         <div className="hidden lg:block lg:w-1/2"></div>
 
         {/* Right side - Form */}
-        <div className="w-full lg:w-1/2 flex items-start justify-center pt-0 pb-12 px-6 lg:px-12">
-          <div className="w-full max-w-md">
+        <div className="w-full lg:w-1/2 flex items-start justify-center pt-0 pb-10 px-5 lg:px-10">
+          <div className="w-full max-w-sm">
             <SignUpForm />
           </div>
         </div>
       </div>
 
       {/* Bottom Left Marketing Content */}
-      <div className="absolute bottom-16 left-8 z-10 hidden lg:block">
-        <div className="text-white max-w-lg">
-          <h1 className="text-3xl font-bold mb-4 leading-tight">
+      <div className="absolute bottom-12 left-6 z-10 hidden lg:block">
+        <div className="text-white max-w-md">
+          <h1 className="text-2xl font-bold mb-3 leading-tight">
             Join Fast and Start Receiving Payments
           </h1>
-          <p className="text-base text-gray-200 mb-6 leading-relaxed">
+          <p className="text-sm text-gray-200 mb-4 leading-relaxed">
             The fastest way to accept payments online. Get started in minutes and scale your business with our powerful payment platform.
           </p>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-col space-y-2">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-sm text-gray-200">Setup in under 5 minutes</span>
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+              <span className="text-xs text-gray-200">Setup in under 5 minutes</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-sm text-gray-200">Accept 100+ payment methods</span>
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+              <span className="text-xs text-gray-200">Accept 100+ payment methods</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-sm text-gray-200">Enterprise-grade security</span>
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+              <span className="text-xs text-gray-200">Enterprise-grade security</span>
             </div>
           </div>
         </div>

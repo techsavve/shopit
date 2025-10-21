@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ChevronsUpDown, Plus } from "lucide-react"
+import Image from "next/image"
 
 import {
   DropdownMenu,
@@ -41,7 +42,7 @@ export function AccountSwitcher() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <img className="size-4" src={`https://robohash.org/${account.name}`} />
+                <img className="size-4" src={`https://robohash.org/${account.name}`} alt={account.name} width={16} height={16} />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
@@ -68,7 +69,7 @@ export function AccountSwitcher() {
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">
-                  <img className="size-4 shrink-0" src={`https://robohash.org/${account.name}`} />
+                  <img className="size-4 shrink-0" src={`https://robohash.org/${account.name}`} alt={account.name} width={16} height={16} />
                 </div>
                 {account.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

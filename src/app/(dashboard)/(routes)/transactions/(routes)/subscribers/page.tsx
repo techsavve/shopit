@@ -28,19 +28,21 @@ export default function SubscribersPage() {
       account_id: account.id,
       limit: PER_PAGE,
       page,
-      from: filters.date?.from,
-      to: filters.date?.to,
+      account: filters.date?.from,
+      user: filters.date?.to,
       amount_min: filters.amountRange?.[0] ? Number(filters.amountRange?.[0]) : undefined,
       amount_max: filters.amountRange?.[1] ? Number(filters.amountRange?.[1]) : undefined,
     }
 
     getSubscribers(payload)
-  }, [account?.id, filters, page])
+  }, [ account?.id, filters, page, getSubscribers ])
 
   return (
     <div className="p-4 space-y-4">
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-semibold">Subscribers</h1>
+        <p className="text-sm text-muted-foreground">
+          Manage your recurring payment subscribers
+        </p>
         <SubscriberFilters onFilter={setFilters} />
       </div>
 

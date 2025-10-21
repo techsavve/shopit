@@ -26,15 +26,17 @@ export default function TransactionsPage() {
       page,
       status: filters.status,
       blockchain: filters.blockchain,
-      from: filters.date?.from,
-      to: filters.date?.to,
-    })
-  }, [account?.id, filters, page]);
+      account: filters.date?.from,
+      user: filters.date?.to,
+    })  
+  }, [account?.id, filters, getTransactions, page]);
 
   return (
     <div className="p-4 space-y-4">
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-semibold">Transactions</h1>
+        <p className="text-sm text-muted-foreground">
+          View and manage all your payment transactions
+        </p>
         <TransactionFilters onFilter={setFilters} />
       </div>
 
@@ -46,11 +48,11 @@ export default function TransactionsPage() {
                 <div key={tx.id} className="border p-4 rounded-lg space-y-2">
                   <div className="flex justify-between">
                     <div>
-                      <p className="text-sm font-semibold">From: {tx.from.email}</p>
-                      <p className="text-xs text-muted-foreground">{tx.from.address}</p>
+                      <p className="text-sm font-semibold">From: {tx.account.email}</p>
+                      <p className="text-xs text-muted-foreground">{tx.account.address}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold">To: {tx.to.wallet_address}</p>
+                      <p className="text-sm font-semibold">To: {tx.user.wallet_address}</p>
                       <p className="text-xs text-muted-foreground">{tx.blockchain}</p>
                     </div>
                   </div>

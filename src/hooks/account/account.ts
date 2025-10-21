@@ -13,7 +13,7 @@ interface AccountData {
   errors: IError[];
   account?: Omit<IPaymentAccount, 'user'>;
 
-  onboardingStatus?: 'start' | 'packages' | 'configure' | 'pricing' | 'checkout' | 'success'
+  onboardingStatus?: 'start' | 'packages' | 'configure' | 'confirm' | 'success'
   onboarding: ICreateAccount
 }
 
@@ -36,8 +36,8 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
     onboarding: {
         name: "",
         description: "",
-        account_type: "subscription",
-        package_type: "single",
+        account_type: "one-time",
+        package_type: "multiple",
         interval: "daily",
         packages: [{ name: "pro", amount: 20 }],
         supported_chains: [],
@@ -69,6 +69,7 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
             const account_id = merchant?.setting?.accounts?.[0]?.id;
             if (!account_id) {
                 toast("Uh oh!", { description: 'merchant do not have an account' });
+                set({ isLoading: false });
                 return;
             }
             const response = await apiInstance().get(`/account/onboard/${account_id}`).then(handleRequest<IPaymentAccount>).catch(handleError);
@@ -78,7 +79,7 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
                 onSuccess && onSuccess();
                 return;
             }
-            set({ errors: response.error });
+            set({ errors: response.error, isLoading: false });
             toast("Uh oh! Something went wrong.", { description: `${response.message}` });
             return;
         } catch (error) {
@@ -96,10 +97,12 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
                 set({ account: response.data, isLoading: false });
                 return;
             }
-            set({ errors: response.error, isLoading: false });
+            set({ errors: response.error });
             toast(`${response.message}`, { description: "Uh oh! Unable to get account." });
         } catch (error) {
             toast("Uh oh! Something went wrong.", { description: `${error}` });
+        } finally {
+            set({ isLoading: false });
         }
     },
 

@@ -7,6 +7,7 @@ import { LoadingScreen } from "@/components/loading/loading-screen";
 import { Separator } from "@radix-ui/react-separator";
 import { CreateAccountModal } from "./_components/create/create-modal";
 import { useAccount } from "@/hooks/account/account";
+import { PageHeader } from "@/components/header/page-header";
 
 export default function RootLayout({
   children,
@@ -21,13 +22,13 @@ export default function RootLayout({
   useEffect(() => {
     if (!isUserLoaded.current) getMe();
     isUserLoaded.current = true;
-  }, []);
+  }, [ getMe ]);
 
   useEffect(() => {
     if (!merchant?.id) return;
     if (!isAccountLoaded.current) getCurrentAccount(merchant);
     isAccountLoaded.current = true;
-  }, [merchant]);
+  }, [ merchant, getCurrentAccount, isAccountLoaded ]);
 
   const onClose = () => {
     if (!merchant?.setting.accounts?.length) return;
@@ -46,10 +47,13 @@ export default function RootLayout({
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-white/60 dark:bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-white/50 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <header className="flex h-16 shrink-0 items-center gap-4 border-b bg-white/60 dark:bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-white/50 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
             <div className="flex items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
+            </div>
+            <div className="flex-1">
+              <PageHeader />
             </div>
           </header>
           <div className="gap-2 px-4 pt-4 pb-8">

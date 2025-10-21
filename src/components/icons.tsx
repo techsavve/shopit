@@ -2,30 +2,12 @@ type IconProps = React.HTMLAttributes<SVGElement>
 
 export const Icons = {
   logo: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
-      <rect width="256" height="256" fill="none" />
-      <line
-        x1="208"
-        y1="128"
-        x2="128"
-        y2="208"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
-      />
-      <line
-        x1="192"
-        y1="40"
-        x2="40"
-        y2="192"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
+      <rect width="1024" height="1024" fill="#0B1727" rx="64"/>
+      <path d="M200 200 L800 200 L700 400 L300 400 Z" fill="#FEFEFE"/>
+      <path d="M300 600 L800 600 L700 800 L200 800 Z" fill="#FEFEFE"/>
+      <circle cx="850" cy="150" r="50" fill="#00E2E8"/>
+      <path d="M150 400 Q300 300 450 400 Q600 500 750 400" stroke="#00E2E8" strokeWidth="8" fill="none" strokeLinecap="round"/>
     </svg>
   ),
   twitter: (props: IconProps) => (
@@ -166,6 +148,23 @@ export const Icons = {
         className="animate-pulse"
         style={{ animationDelay: '0.5s' }}
       />
+    </svg>
+  ),
+  close: (props: IconProps) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="M6 6l12 12" />
     </svg>
   )
 }

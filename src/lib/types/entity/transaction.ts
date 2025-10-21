@@ -6,8 +6,8 @@ export type IGetTransaction = { id: string; };
 export type IGetTransactions = { 
     account_id: string;
     status?: string;
-    from?: Date;
-    to?: Date;
+    account?: Date;
+    user?: Date;
     blockchain?: IBlockchainType[];
     amount_min?: number;
     amount_max?: number;
@@ -19,12 +19,12 @@ export type IGetTransactions = {
 export type ISecureTransaction = {
     id: string;
     errors: string[];
-    from: {
+    account: {
         email: string;
         address: string
         // user_wallet: IUserWallet
     };
-    to: { 
+    user: { 
         wallet_address: string;
         account_wallet?: IAccountWallet
     };

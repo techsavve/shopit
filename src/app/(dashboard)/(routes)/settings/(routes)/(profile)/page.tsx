@@ -13,12 +13,9 @@ import {
 export default function SettingsProfilePage() {
   return (
     <div className="space-y-4">
-      <div>
-        <h3 className="text-lg font-medium">Settings</h3>
-        <p className="text-sm text-muted-foreground">
-          Update your profile and notification preferences.
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground">
+        Update your profile and notification preferences.
+      </p>
       <Separator />
 
       <Tabs defaultValue="profile" className="w-full">

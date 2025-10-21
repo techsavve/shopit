@@ -5,13 +5,9 @@ import { AccountForm } from "./_components/account-form"
 export default function SettingsAccountPage() {
   return (
     <div className="space-y-4">
-      <div>
-        <h3 className="text-lg font-medium">Account</h3>
-        <p className="text-sm text-muted-foreground">
-          Update your account settings. Set your preferred language and
-          timezone.
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground">
+        Update your account settings. Set your preferred language and timezone.
+      </p>
       <Separator />
       <AccountForm />
     </div>

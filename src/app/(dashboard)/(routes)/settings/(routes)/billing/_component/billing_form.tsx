@@ -50,7 +50,7 @@ export default function BillingForm() {
         <div className="bg-yellow-100 border border-yellow-300 p-4 rounded-md text-sm text-yellow-900 flex gap-2 mb-4">
           <ShieldAlert className="w-5 h-5 mt-[2px]" />
           <div>
-            <strong>Security Notice:</strong> Double-check recipient wallet addresses. Transactions are irreversible. Ensure you're operating in a secure environment.
+            <strong>Security Notice:</strong> Double-check recipient wallet addresses. Transactions are irreversible. Ensure you&apos;re operating in a secure environment.
           </div>
         </div>
 

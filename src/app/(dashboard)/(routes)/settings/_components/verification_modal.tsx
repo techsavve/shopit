@@ -201,7 +201,7 @@ export function VerificationModal({
 
             {!emailSent ? (
               <Button onClick={handleSendCode} disabled={loading}>
-                {loading ? <><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> "Sending Code..."</> : "Send Verification Code"}
+                {loading ? <><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> &quot;Sending Code...&quot;</> : "Send Verification Code"}
               </Button>
             ) : (
               <div className="flex justify-between items-center">
@@ -215,7 +215,7 @@ export function VerificationModal({
                   {resendCountdown > 0 ? `Resend in ${resendCountdown}s` : "Resend Code"}
                 </Button>
                 <Button type="submit" disabled={loading}>
-                  {loading ? <><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> "Verifying..."</> : "Verify & Continue"}
+                  {loading ? <><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> &quot;Verifying...&quot;</> : "Verify & Continue"}
                 </Button>
               </div>
             )}

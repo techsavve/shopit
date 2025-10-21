@@ -20,7 +20,7 @@ export default function DashboardPage() {
     if (isTransactionsLoaded.current || !account?.id) return
     getTransactions({ account_id: account.id, limit: 4, page: 1 })
     isTransactionsLoaded.current = true
-  }, [ account?.id ])
+  }, [ account?.id, getTransactions ])
 
   const stats = [
     {
@@ -55,12 +55,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      {/* Page Description */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Dashboard Overview</h1>
-          <p className="text-muted-foreground mt-2">Welcome back! Here's what's happening with your business today.</p>
-        </div>
+        <p className="text-muted-foreground">Welcome back! Here&apos;s what&apos;s happening with your business today.</p>
         <Button size="lg" className="rounded-xl shadow-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0">
           <ArrowUpRight className="mr-2 h-4 w-4" />
           Generate Report

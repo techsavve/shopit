@@ -57,50 +57,50 @@ export function SignUpForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-5", className)} {...props}>
       <Card className="overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
-        <CardContent className="p-6">
+        <CardContent className="p-5">
           <form onSubmit={form.handleSubmit(signUp)}>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {/* Header */}
-              <div className="flex flex-col items-center text-center space-y-3">
-                <h1 className="text-2xl font-bold text-gray-900">
+              <div className="flex flex-col items-center text-center space-y-2">
+                <h1 className="text-xl font-bold text-gray-900">
                   Create your account
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-sm text-gray-600">
                   Join thousands of businesses using Zypay Inc
                 </p>
               </div>
 
               {/* Form Fields */}
-              <div className="space-y-3">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-2">
-                    <Label htmlFor="first_name" className="text-sm font-medium text-gray-700">
+              <div className="space-y-2.5">
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="first_name" className="text-xs font-medium text-gray-700">
                       First Name
                     </Label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                       <Input
                         id="first_name"
                         placeholder="John"
                         required
-                        className="pl-12 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
+                        className="pl-10 h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
                         {...form.register('first_name')}
                         error={getSpecificError('first_name', errors)}
                       />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="second_name" className="text-sm font-medium text-gray-700">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="second_name" className="text-xs font-medium text-gray-700">
                       Last Name
                     </Label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                       <Input
                         id="second_name"
                         placeholder="Doe"
-                        className="pl-12 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
+                        className="pl-10 h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
                         {...form.register('second_name')}
                         error={getSpecificError('second_name', errors)}
                       />
@@ -108,36 +108,36 @@ export function SignUpForm({
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                <div className="space-y-1.5">
+                  <Label htmlFor="email" className="text-xs font-medium text-gray-700">
                     Email address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <Input
                       id="email_address"
                       type="email"
                       placeholder="Enter your email"
                       required
-                      className="pl-12 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
+                      className="pl-10 h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
                       {...form.register('email_address')}
                       error={getSpecificError('email_address', errors)}
                     />
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                <div className="space-y-1.5">
+                  <Label htmlFor="password" className="text-xs font-medium text-gray-700">
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
                       required
-                      className="pl-12 pr-12 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
+                      className="pl-10 pr-10 h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-lg"
                       onChange={handlePasswordChange}
                       error={getSpecificError('password', errors)}
                     />
@@ -146,14 +146,14 @@ export function SignUpForm({
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                     >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                   
                   {/* Password Strength Indicator */}
                   {form.watch('password') && (
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between text-xs">
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-[10px]">
                         <span className="text-gray-600">Password strength:</span>
                         <span className={`font-medium ${
                           passwordStrength <= 2 ? 'text-red-500' : 
@@ -166,7 +166,7 @@ export function SignUpForm({
                         {[1, 2, 3, 4, 5].map((level) => (
                           <div
                             key={level}
-                            className={`h-1 flex-1 rounded-full ${
+                            className={`h-0.5 flex-1 rounded-full ${
                               level <= passwordStrength 
                                 ? getPasswordStrengthColor(passwordStrength)
                                 : 'bg-gray-200'
@@ -179,8 +179,8 @@ export function SignUpForm({
                 </div>
 
                 {/* Password Requirements */}
-                <div className="space-y-2">
-                  <p className="text-xs text-gray-600">Password requirements:</p>
+                <div className="space-y-1.5">
+                  <p className="text-[10px] text-gray-600">Password requirements:</p>
                   <div className="space-y-1">
                     {[
                       { text: 'At least 8 characters', met: form.watch('password')?.length >= 8 },
@@ -188,11 +188,11 @@ export function SignUpForm({
                       { text: 'One lowercase letter', met: /[a-z]/.test(form.watch('password') || '') },
                       { text: 'One number', met: /[0-9]/.test(form.watch('password') || '') }
                     ].map((req, index) => (
-                      <div key={index} className="flex items-center space-x-2 text-xs">
-                        <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+                      <div key={index} className="flex items-center space-x-2 text-[10px]">
+                        <div className={`w-3.5 h-3.5 rounded-full flex items-center justify-center ${
                           req.met ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
                         }`}>
-                          {req.met && <Check className="w-3 h-3" />}
+                          {req.met && <Check className="w-2.5 h-2.5" />}
                         </div>
                         <span className={req.met ? 'text-green-600' : 'text-gray-500'}>
                           {req.text}
@@ -206,9 +206,9 @@ export function SignUpForm({
                   <input
                     type="checkbox"
                     {...form.register('remember_me')}
-                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="w-3.5 h-3.5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                   />
-                  <span className="text-sm text-gray-600">
+                  <span className="text-xs text-gray-600">
                     I agree to the{" "}
                     <a href="#" className="text-purple-600 hover:text-purple-700 font-medium">
                       Terms of Service
@@ -225,14 +225,14 @@ export function SignUpForm({
               <Button 
                 disabled={isLoading} 
                 type="submit" 
-                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm"
               >
                 {isLoading ? (
-                  <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
                   <>
                     Create Account
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
               </Button>
@@ -242,34 +242,34 @@ export function SignUpForm({
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200" />
                 </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-white text-gray-500">
+                <div className="relative flex justify-center text-xs">
+                  <span className="px-3 bg-white text-gray-500">
                     Or sign up with
                   </span>
                 </div>
               </div>
 
               {/* Social Login */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <Button
                   variant="outline"
-                  className="h-12 border-gray-200 hover:bg-gray-50 rounded-lg"
+                  className="h-10 border-gray-200 hover:bg-gray-50 rounded-lg text-sm"
                 >
-                  <Icons.google className="w-5 h-5 mr-2" />
+                  <Icons.google className="w-4 h-4 mr-1.5" />
                   Google
                 </Button>
                 <Button
                   variant="outline"
-                  className="h-12 border-gray-200 hover:bg-gray-50 rounded-lg"
+                  className="h-10 border-gray-200 hover:bg-gray-50 rounded-lg text-sm"
                 >
-                  <Icons.apple className="w-5 h-5 mr-2" />
+                  <Icons.apple className="w-4 h-4 mr-1.5" />
                   Apple
                 </Button>
               </div>
 
               {/* Sign In Link */}
               <div className="text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-xs text-gray-600">
                   Already have an account?{" "}
                   <a 
                     href="sign-in" 
