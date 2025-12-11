@@ -272,7 +272,7 @@ export function SignUpForm({
                 <p className="text-xs text-gray-600">
                   Already have an account?{" "}
                   <a 
-                    href="sign-in" 
+                    href="signin" 
                     className="font-semibold text-purple-600 hover:text-purple-700 transition-colors"
                   >
                     Sign in

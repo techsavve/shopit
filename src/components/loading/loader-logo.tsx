@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Icons } from "@/components/icons"
 
 const LoaderLogo = () => {
@@ -8,7 +9,7 @@ const LoaderLogo = () => {
             {/* Animated Logo */}
             <div className="relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#1A202C] to-[#00BCD4] rounded-3xl flex items-center justify-center shadow-2xl animate-pulse">
-                    <Icons.logo className="w-12 h-12" />
+                    <Image src="/zypay.svg" alt="Logo" width={55} height={55} className="rounded-2xl" />
                 </div>
                 {/* Rotating Ring */}
                 <div className="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-[#00BCD4] border-r-[#1A202C] rounded-3xl animate-spin"></div>

@@ -1,14 +1,10 @@
+import Image from "next/image"
+
 type IconProps = React.HTMLAttributes<SVGElement>
 
 export const Icons = {
   logo: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
-      <rect width="1024" height="1024" fill="#0B1727" rx="64"/>
-      <path d="M200 200 L800 200 L700 400 L300 400 Z" fill="#FEFEFE"/>
-      <path d="M300 600 L800 600 L700 800 L200 800 Z" fill="#FEFEFE"/>
-      <circle cx="850" cy="150" r="50" fill="#00E2E8"/>
-      <path d="M150 400 Q300 300 450 400 Q600 500 750 400" stroke="#00E2E8" strokeWidth="8" fill="none" strokeLinecap="round"/>
-    </svg>
+    <Image src="/zypay.svg" alt="Logo" width={55} height={55} className="rounded-lg" />
   ),
   twitter: (props: IconProps) => (
     <svg

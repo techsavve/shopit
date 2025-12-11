@@ -7,13 +7,15 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
+export type OnboardingStatus = 'start' | 'account-setup' | 'packages' | 'configure' | 'confirm' | 'success'
+
 interface AccountData {
   isLoading: boolean;
   isProgressLoading: boolean;
   errors: IError[];
   account?: Omit<IPaymentAccount, 'user'>;
 
-  onboardingStatus?: 'start' | 'packages' | 'configure' | 'confirm' | 'success'
+  onboardingStatus?: OnboardingStatus
   onboarding: ICreateAccount
 }
 
@@ -24,7 +26,7 @@ interface AccountStore extends AccountData {
     updateAccount: (request: IUpdateAccount) => Promise<void>
     updateAccountWallet: (request: IUpdateAccountWallet) => Promise<void>
 
-    setOnboarding: (status: AccountData['onboardingStatus'], data?: Partial<ICreateAccount>) => void
+    setOnboarding: (status: OnboardingStatus, data?: Partial<ICreateAccount>) => void
     setOnboardingData: (data?: AccountData['onboarding']) => void,
 }
 
@@ -147,7 +149,7 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
         }
     },
 
-    setOnboarding: (status?: AccountData['onboardingStatus'], data?: Partial<ICreateAccount>) => {
+    setOnboarding: (status?: OnboardingStatus, data?: Partial<ICreateAccount>) => {
         set({ onboardingStatus: status });
         data && set((prev) => ({ ...prev, onboarding: { ...prev.onboarding ,...data} }));
     },

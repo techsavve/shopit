@@ -42,6 +42,7 @@ export function ConfirmPlansForm() {
 
   const onSubmit = () => {
     if (!onboarding) return
+    // setOnboarding("confirm", onboarding)
     return createAccount({ ...onboarding, plan: "free" })
   }
 

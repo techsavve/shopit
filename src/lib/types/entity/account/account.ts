@@ -51,13 +51,15 @@ export type IPaymentAccount = {
     id: string;
     name: string;
     description: string;
-    plan: string;
+    plan: IPlanType;
+    total_balance: number;
+    details: IAccountDetails;
+    created_at: Date;
+    updated_at: Date;
     merchant: IMerchant;
     analytics: IAnalytics[];
     wallets: IAccountWallet[];
-    api_info: IApiInfo,
-    sandbox_info: IApiInfo,
-    details: IAccountDetails,
-    total_balance: number;
+    sandbox_info: IApiInfo;
+    api_info: IApiInfo;
     settings: IAccountSettings;
 }

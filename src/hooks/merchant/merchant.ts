@@ -30,7 +30,7 @@ export const useMerchant = create<MerchantStore>()(devtools((set) => ({
                 set({ merchant: response.data, isLoading: false });
                 return;
             }
-            if (response.no_token) window.location.href = `/sign-in?redirect_url=${window.location.href}`;
+            if (response.no_token) window.location.href = `/signin?redirect_url=${window.location.href}`;
             toast("Uh oh! Something went wrong.", { description: `${response.message}` });
         } catch (error) {
             toast("Uh oh! Something went wrong.", { description: `${error}` });
@@ -47,7 +47,7 @@ export const useMerchant = create<MerchantStore>()(devtools((set) => ({
                 set({ merchant: response.data });
                 return;
             }
-            if (response.no_token) window.location.href = `/sign-in?redirect_url=${window.location.href}`;
+            if (response.no_token) window.location.href = `/signin?redirect_url=${window.location.href}`;
             toast("Uh oh! Something went wrong.", { description: `${response.message}` });
         } catch (error) {
             toast("Uh oh! Something went wrong.", { description: `${error}` });
@@ -64,7 +64,7 @@ export const useMerchant = create<MerchantStore>()(devtools((set) => ({
                 set({ merchant: response.data });
                 return;
             }
-            if (response.no_token) window.location.href = `/sign-in?redirect_url=${window.location.href}`;
+            if (response.no_token) window.location.href = `/signin?redirect_url=${window.location.href}`;
             toast("Uh oh! Something went wrong.", { description: `${response.message}` });
         } catch (error) {
             toast("Uh oh! Something went wrong.", { description: `${error}` });

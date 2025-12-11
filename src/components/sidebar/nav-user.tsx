@@ -50,7 +50,7 @@ export function NavUser({ user }: { user: IMerchant }) {
                 <AvatarImage className="size-4" src={AvatarSrc} alt={user.personal.first_name} />
                 <AvatarFallback className="rounded-lg">
                   {user.personal.first_name[0].toUpperCase()}
-                  {user.personal.surname[0].toUpperCase()}
+                  {user.personal.surname?.[0].toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -72,7 +72,7 @@ export function NavUser({ user }: { user: IMerchant }) {
                   <AvatarImage src={AvatarSrc} alt={user.personal.first_name} />
                   <AvatarFallback className="rounded-lg">
                     {user.personal.first_name[0].toUpperCase()}
-                    {user.personal.surname[0].toUpperCase()}
+                    {user.personal.surname?.[0].toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">

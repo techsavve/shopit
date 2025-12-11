@@ -1,7 +1,7 @@
-import { SignInForm } from "../../_components/sign-in-form";
+import { SignUpForm } from "../../_components/signup-form";
 import { Icons } from "@/components/icons";
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <div className="h-screen w-screen relative overflow-hidden">
       {/* Background Image */}
@@ -33,9 +33,9 @@ export default function SignInPage() {
         <div className="hidden lg:block lg:w-1/2"></div>
 
         {/* Right side - Form */}
-        <div className="w-full lg:w-1/2 flex items-start justify-center pt-16 pb-10 px-5 lg:px-10">
+        <div className="w-full lg:w-1/2 flex items-start justify-center pt-0 pb-10 px-5 lg:px-10">
           <div className="w-full max-w-sm">
-            <SignInForm />
+            <SignUpForm />
           </div>
         </div>
       </div>

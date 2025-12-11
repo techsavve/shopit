@@ -34,7 +34,7 @@ export const useAuth = create<AuthStore>()(devtools((set) => ({
     signIn: async (request: ILoginUser & { remember_me: boolean }) => {
         try {
             set({ isLoading: true });
-            const response = await apiInstance().post("/auth/sign-in", request)
+            const response = await apiInstance().post("/auth/signin", request)
                 .then(handleRequest<IAuth>).catch(handleError);
             console.log("response: ", response);
             if (response.status) {
@@ -66,7 +66,7 @@ export const useAuth = create<AuthStore>()(devtools((set) => ({
 
     signUp: async (request: IRegisterUser) => {
         try {
-            const response = await apiInstance().post("/auth/sign-up", request).then(handleRequest<IAuth>).catch(handleError);
+            const response = await apiInstance().post("/auth/signup", request).then(handleRequest<IAuth>).catch(handleError);
             if (response.status) {
                 localStorage.setItem('zypay_dashboard_access_token', response.data.access_token);
                 window.location.href = `/`;

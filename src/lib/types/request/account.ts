@@ -43,14 +43,30 @@ export const allAccountPackageOptions = [
 export type IGetAccount = {
     account_id: string;
 }
-export const createAccountDetailsSchema = z.object({
+
+// Step 1: Company Information Schema
+export const createCompanyInfoSchema = z.object({
     name: z.string()
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name cannot exceed 50 characters"),
     description: z.string(),
+    country: z.string().min(1, "Please select a country"),
+    website: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+    industry: z.string().optional(),
+})
+
+export type ICreateCompanyInfo = z.infer<typeof createCompanyInfoSchema>
+
+// Step 2: Account Setup Schema
+export const createAccountSetupSchema = z.object({
     account_type: z.enum(["subscription", "one-time"]),
     package_type: z.enum(["single", "multiple"]),
 })
+
+export type ICreateAccountSetup = z.infer<typeof createAccountSetupSchema>
+
+// Combined details schema (for backwards compatibility)
+export const createAccountDetailsSchema = createCompanyInfoSchema.merge(createAccountSetupSchema)
 
 export type ICreateAccountDetails = z.infer<typeof createAccountDetailsSchema>
 

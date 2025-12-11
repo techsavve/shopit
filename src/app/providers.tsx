@@ -11,6 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         defaultTheme="light"
         enableSystem
         disableTransitionOnChange
+        storageKey="zypay-theme"
       >
         <MantineProvider defaultColorScheme="light">
           <SonnerToaster position='top-right' />
