@@ -62,10 +62,10 @@ export function AccountSwitcher() {
             <DropdownMenuLabel className="text-xs text-muted-foreground">
               Accounts
             </DropdownMenuLabel>
-              {merchant?.setting?.accounts.map((account, index) => (
+            {merchant?.accounts.map((account, index) => (
               <DropdownMenuItem
-                key={account.name}
-                onClick={() => switchAccount({account_id: account.id})}
+                key={account.id}
+                onClick={() => switchAccount({ account_id: account.id })}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">

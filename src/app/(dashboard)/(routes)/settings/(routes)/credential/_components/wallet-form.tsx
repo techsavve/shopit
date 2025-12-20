@@ -35,7 +35,7 @@ import { Icons } from "@/components/icons";
 export function WalletForm() {
   const { account, updateAccountWallet, errors, isProgressLoading } = useAccount();
   const [tab, setTab] = useState<"production" | "sandbox">("production");
-  const [ modalOpen, setModalOpen ] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const form = useForm<IUpdateAccountWallet>({
     resolver: zodResolver(updateAccountWalletSchema),
@@ -52,7 +52,7 @@ export function WalletForm() {
     const apiInfo = tab === "production" ? account.api_info : account.sandbox_info;
 
     const wallet_addresses = Object.fromEntries(
-      account.wallets.map((wallet) => [wallet.blockchain, wallet.master_wallet_address])
+      account.wallets.map((wallet) => [wallet.blockchain, wallet.merchant_address])
     );
 
     form.reset({
@@ -201,8 +201,8 @@ export function WalletForm() {
               </div>
 
               <Button type="submit" className="mt-4" disabled={isProgressLoading}>
-                { !isProgressLoading && <>Save {tab === "production" ? "Production" : "Sandbox"} Settings</>}
-                {isProgressLoading && ( <><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Loading...</> )}
+                {!isProgressLoading && <>Save {tab === "production" ? "Production" : "Sandbox"} Settings</>}
+                {isProgressLoading && (<><Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Loading...</>)}
               </Button>
             </form>
           </Form>

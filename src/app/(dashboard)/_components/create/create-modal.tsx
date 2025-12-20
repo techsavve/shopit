@@ -24,7 +24,7 @@ const stepConfig = {
 
 const steps = ['start', 'account-setup', 'packages', 'configure', 'confirm'] as const;
 
-export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isOpen?: boolean, onClose?: () => void }) => {
+export const CreateAccountModal = ({ isOpen = false, onClose = () => { } }: { isOpen?: boolean, onClose?: () => void }) => {
   const { onboardingStatus, account, isProgressLoading, setOnboarding, createAccount, onboarding } = useAccount();
   if (onboardingStatus === undefined) return;
 
@@ -32,7 +32,7 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
   const StepIcon = currentStep.icon;
 
   const OnboardingFlow = () => {
-    const Onboarding: Record<OnboardingStatus, ({ onClose }: { onClose: () => void }) => React.JSX.Element>  = {
+    const Onboarding: Record<OnboardingStatus, ({ onClose }: { onClose: () => void }) => React.JSX.Element> = {
       'start': CompanyInfoForm,
       'account-setup': AccountSetupForm,
       'packages': AccountPackageForm,
@@ -41,7 +41,7 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
       'success': CreateAccountSuccess,
     }
     const Component = Onboarding[onboardingStatus] || Onboarding['start'];
-    return <Component onClose={onClose}/>;
+    return <Component onClose={onClose} />;
   }
 
   const handleBack = () => {
@@ -61,7 +61,7 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
   const showCancelButton = onboardingStatus === 'start' && account;
   const showFooter = onboardingStatus !== 'success';
   const continueButtonText = onboardingStatus === 'confirm' ? 'Create Account' : 'Continue';
-  
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="h-[96vh] w-[98vw] max-w-[1400px] p-0 overflow-hidden border-0 flex flex-col bg-gradient-to-br from-slate-50 via-white to-cyan-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-cyan-950/20">
@@ -120,7 +120,7 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
                     <React.Fragment key={step}>
                       {/* Step Circle */}
                       <div className="flex items-center gap-2">
-                        <div 
+                        <div
                           className={cn(
                             "relative flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-500",
                             isActive && "bg-gradient-to-br from-cyan-500 to-teal-500 shadow-lg shadow-cyan-500/30 scale-110",
@@ -150,17 +150,17 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
                           {config.title.split(' ')[0]}
                         </span>
                       </div>
-                      
+
                       {/* Connector Line */}
                       {index < steps.length - 1 && (
                         <div className="flex-1 h-0.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                          <div 
+                          <div
                             className={cn(
                               "h-full rounded-full transition-all duration-700 ease-out",
-                              isCompleted 
-                                ? "bg-gradient-to-r from-emerald-500 to-green-500 w-full" 
-                                : isActive 
-                                  ? "bg-gradient-to-r from-cyan-500 to-teal-500 w-1/2" 
+                              isCompleted
+                                ? "bg-gradient-to-r from-emerald-500 to-green-500 w-full"
+                                : isActive
+                                  ? "bg-gradient-to-r from-cyan-500 to-teal-500 w-1/2"
                                   : "w-0"
                             )}
                           />
@@ -175,9 +175,9 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
         </div>
 
         {/* Scrollable Content */}
-        <div className="relative flex-1 overflow-y-auto scrollbar-hide">
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <OnboardingFlow/>
+        <div className="relative flex-1 overflow-y-auto overflow-x-hidden touch-scroll touch-pan-y">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-4">
+            <OnboardingFlow />
           </div>
         </div>
 
@@ -187,20 +187,20 @@ export const CreateAccountModal = ({ isOpen = false, onClose = () => {} }: { isO
             <div className="max-w-4xl mx-auto flex justify-between items-center">
               {/* Back/Cancel Button */}
               {showBackButton ? (
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={handleBack}
-                  type="button" 
+                  type="button"
                   className="h-11 px-6 text-sm font-medium group hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
                 >
                   <ChevronLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                   Back
                 </Button>
               ) : showCancelButton ? (
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={onClose}
-                  type="button" 
+                  type="button"
                   className="h-11 px-6 text-sm font-medium hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30 dark:hover:text-red-400 transition-all duration-300"
                 >
                   Cancel

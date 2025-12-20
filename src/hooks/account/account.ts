@@ -10,13 +10,13 @@ import { devtools } from "zustand/middleware";
 export type OnboardingStatus = 'start' | 'account-setup' | 'packages' | 'configure' | 'confirm' | 'success'
 
 interface AccountData {
-  isLoading: boolean;
-  isProgressLoading: boolean;
-  errors: IError[];
-  account?: Omit<IPaymentAccount, 'user'>;
+    isLoading: boolean;
+    isProgressLoading: boolean;
+    errors: IError[];
+    account?: Omit<IPaymentAccount, 'user'>;
 
-  onboardingStatus?: OnboardingStatus
-  onboarding: ICreateAccount
+    onboardingStatus?: OnboardingStatus
+    onboarding: ICreateAccount
 }
 
 interface AccountStore extends AccountData {
@@ -68,7 +68,7 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
 
     getCurrentAccount: async (merchant: IMerchant, onSuccess?: () => void) => {
         try {
-            const account_id = merchant?.setting?.accounts?.[0]?.id;
+            const account_id = merchant?.accounts?.[0]?.id;
             if (!account_id) {
                 toast("Uh oh!", { description: 'merchant do not have an account' });
                 set({ isLoading: false });
@@ -151,9 +151,9 @@ export const useAccount = create<AccountStore>()(devtools((set, get) => ({
 
     setOnboarding: (status?: OnboardingStatus, data?: Partial<ICreateAccount>) => {
         set({ onboardingStatus: status });
-        data && set((prev) => ({ ...prev, onboarding: { ...prev.onboarding ,...data} }));
+        data && set((prev) => ({ ...prev, onboarding: { ...prev.onboarding, ...data } }));
     },
-    
+
     setOnboardingData: (data?: AccountData['onboarding']) => {
         set({ onboarding: data });
     }

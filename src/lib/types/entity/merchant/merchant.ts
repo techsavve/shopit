@@ -2,16 +2,16 @@ import { IPaymentAccount } from "../account/account";
 import z from 'zod'
 
 export type ISubscription = {
-    price_id: string;
-    product_id: string;
-    status: string;
-    start_date: string;
-    end_date: string;
+  price_id: string;
+  product_id: string;
+  status: string;
+  start_date: string;
+  end_date: string;
 };
 
 export type ICustomSetting = {
-    default_theme: string;
-    is_accepting_request: boolean;
+  default_theme: string;
+  is_accepting_request: boolean;
 };
 
 export type INotificationSetting = {
@@ -22,87 +22,85 @@ export type INotificationSetting = {
 };
 
 export type ISettings = {
-    custom_setting: ICustomSetting;
-    subscription: ISubscription;
-    accounts: IPaymentAccount[]
-    notification: INotificationSetting
+  custom_setting: ICustomSetting;
+  subscription: ISubscription;
+  notification: INotificationSetting
 };
 
 export interface IVerification {
-    code: string;
-    timeout: number;
+  code: string;
+  timeout: number;
 }
 
 export type IPersonal = {
-    first_name: string;
-    surname: string;
-    email_address: string;
-    profile_image?: string;
-    dob?: Date,
-    language?: string;
-    display_email?: string;
-    emails?: string[];
-    bio?: string;
+  first_name: string;
+  surname: string;
+  email_address: string;
+  profile_image?: string;
+  dob?: Date,
+  language?: string;
+  display_email?: string;
+  emails?: string[];
+  bio?: string;
 };
 
 export type IMerchant = {
-    id: string;
-    personal: IPersonal;
-    updated_at: Date;
-    created_at: Date;
-    verification: IVerification;
-    setting: ISettings;
-    subscription: ISubscription;
+  id: string;
+  personal: IPersonal;
+  setting: ISettings;
+  accounts: IPaymentAccount[]
+  updated_at: Date;
+  created_at: Date;
 };
 
 export interface IGeneralMerchant {
-    personal: IPersonal;
-    updated_at: Date;
-    created_at: Date;
+  personal: IPersonal;
+  updated_at: Date;
+  created_at: Date;
 }
 
 
 export const updateProfileSchema = z.object({
-    first_name: z
-      .string()
-      .min(2, {
-        message: "Name must be at least 2 characters.",
-      })
-      .max(30, {
-        message: "Name must not be longer than 30 characters.",
-      }),
-    surname: z
-      .string()
-      .min(2, {
-        message: "Name must be at least 2 characters.",
-      })
-      .max(30, {
-        message: "Name must not be longer than 30 characters.",
-      }),
-    dob: z.date({
-      required_error: "A date of birth is required.",
+  first_name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
     }),
-    language: z.string({
-      required_error: "Please select a language.",
+  surname: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
     }),
-    display_email: z
-      .string({
-        required_error: "Please select an email to display.",
+  dob: z.date({
+    required_error: "A date of birth is required.",
+  }),
+  language: z.string({
+    required_error: "Please select a language.",
+  }),
+  display_email: z
+    .string({
+      required_error: "Please select an email to display.",
+    })
+    .email(),
+  emails: z.array(z
+    .string({
+      required_error: "Please select an email to display.",
+    })
+    .email()),
+  bio: z.string().max(160).min(4),
+  urls: z
+    .array(
+      z.object({
+        value: z.string().url({ message: "Please enter a valid URL." }),
       })
-      .email(),
-    emails: z.array(z
-      .string({
-        required_error: "Please select an email to display.",
-      })
-      .email()),
-    bio: z.string().max(160).min(4),
-    urls: z
-      .array(
-        z.object({
-          value: z.string().url({ message: "Please enter a valid URL." }),
-        })
-      )
-      .optional(),
+    )
+    .optional(),
 })
 
 export type IUpdateProfile = z.infer<typeof updateProfileSchema>

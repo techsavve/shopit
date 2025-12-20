@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { LoadingScreen } from "@/components/loading/loading-screen";
 import { Separator } from "@radix-ui/react-separator";
 import { CreateAccountModal } from "./_components/create/create-modal";
-import { useAccount } from "@/hooks/account/account";
+import { OnboardingStatus, useAccount } from "@/hooks/account/account";
 import { PageHeader } from "@/components/header/page-header";
 
 export default function RootLayout({
@@ -22,24 +22,24 @@ export default function RootLayout({
   useEffect(() => {
     if (!isUserLoaded.current) getMe();
     isUserLoaded.current = true;
-  }, [ getMe ]);
+  }, [getMe]);
 
   useEffect(() => {
     if (!merchant?.id) return;
     if (!isAccountLoaded.current) getCurrentAccount(merchant);
     isAccountLoaded.current = true;
-  }, [ merchant, getCurrentAccount, isAccountLoaded ]);
+  }, [merchant, getCurrentAccount, isAccountLoaded]);
 
   const onClose = () => {
-    if (!merchant?.setting.accounts?.length) return;
-    if (merchant?.setting.accounts?.length < 1) return;
-    
-    setOnboarding(undefined)
+    if (!merchant?.accounts?.length) return;
+    if (merchant?.accounts?.length < 1) return;
+
+    setOnboarding(undefined as unknown as OnboardingStatus)
   }
-  
+
   return (
     <>
-      <LoadingScreen/>
+      <LoadingScreen />
       {<CreateAccountModal
         isOpen={onboardingStatus !== undefined}
         onClose={onClose}

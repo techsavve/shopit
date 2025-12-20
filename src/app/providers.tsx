@@ -1,7 +1,23 @@
 'use client'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { Toaster as SonnerToaster  } from "@/components/ui/sonner"
-import { MantineProvider } from '@mantine/core';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes'
+import { Toaster as SonnerToaster } from "@/components/ui/sonner"
+import { MantineProvider } from '@mantine/core'
+import { useEffect, useState } from 'react'
+
+function MantineThemeSync({ children }: { children: React.ReactNode }) {
+  const { resolvedTheme } = useTheme()
+  const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    setColorScheme(resolvedTheme === 'dark' ? 'dark' : 'light')
+  }, [resolvedTheme])
+
+  return (
+    <MantineProvider forceColorScheme={colorScheme}>
+      {children}
+    </MantineProvider>
+  )
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -13,10 +29,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
         disableTransitionOnChange
         storageKey="zypay-theme"
       >
-        <MantineProvider defaultColorScheme="light">
+        <MantineThemeSync>
           <SonnerToaster position='top-right' />
-            {children}
-        </MantineProvider>
+          {children}
+        </MantineThemeSync>
       </NextThemesProvider>
     </>
   )

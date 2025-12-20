@@ -42,8 +42,8 @@ export function NavProjects({ projects }: { projects: Project[] }) {
       </SidebarGroupLabel>
 
       <SidebarMenu>
-        {projects.map((item) => (
-          <SidebarMenuItem key={item.name}>
+        {projects.map((item, index) => (
+          <SidebarMenuItem key={`${item.name}-${index}`}>
             <SidebarMenuButton
               asChild
               className="flex items-center justify-between group hover:bg-muted/50 transition-colors rounded-md"

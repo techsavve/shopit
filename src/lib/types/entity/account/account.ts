@@ -5,16 +5,16 @@ import { IBlockchainType, IWallet } from "../wallet";
 export type IPlanType = "free" | "standard" | "continuous";
 export type IAccountType = 'subscription' | 'one-time';
 export type IPackageType = 'single' | 'multiple';
-export type IInterval = 'daily' | 'weekly' | 'monthly' | 'yearly'; 
+export type IInterval = 'daily' | 'weekly' | 'monthly' | 'yearly';
 export type IPackageName = 'basic' | 'pro' | 'enterprise';
-  
+
 
 export type IAccountWallet = {
     id: string
     blockchain: IBlockchainType;
-    master_wallet_address: string;
+    merchant_address: string;
     balance: number;
-    wallet: IWallet
+    wallet: IWallet;
     account: IPaymentAccount;
 }
 
@@ -31,7 +31,7 @@ export type IPackage = {
     subscription_fee: number;
 }
 
-export type IAccountDetails= {
+export type IAccountDetails = {
     account_type: IAccountType;
     package_type: IPackageType;
     interval: IInterval;

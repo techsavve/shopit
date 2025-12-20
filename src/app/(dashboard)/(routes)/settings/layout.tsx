@@ -3,30 +3,6 @@
 import Image from "next/image"
 
 import { Separator } from "@/components/ui/separator"
-import { SidebarNav } from "./_components/sidebar-nav"
-
-const sidebarNavItems = [
-  {
-    title: "Profile",
-    href: "/dashboard/o/settings",
-  },
-  {
-    title: "Account",
-    href: "/dashboard/o/settings/account",
-  },
-  {
-    title: "Appearance",
-    href: "/dashboard/o/settings/appearance",
-  },
-  {
-    title: "Notifications",
-    href: "/dashboard/o/settings/notifications",
-  },
-  {
-    title: "Display",
-    href: "/dashboard/o/settings/display",
-  },
-]
 
 interface SettingsLayoutProps {
   children: React.ReactNode

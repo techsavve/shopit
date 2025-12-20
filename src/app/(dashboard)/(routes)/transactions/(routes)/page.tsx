@@ -13,8 +13,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const PER_PAGE = 5
 
 export default function TransactionsPage() {
-  const [ filters, setFilters ] = useState<ITransactionFilters>({})
-  const [ page, setPage ] = useState(1)
+  const [filters, setFilters] = useState<ITransactionFilters>({})
+  const [page, setPage] = useState(1)
   const { account } = useAccount();
   const { getTransactions, transactions } = useTransaction();
 
@@ -28,7 +28,7 @@ export default function TransactionsPage() {
       blockchain: filters.blockchain,
       account: filters.date?.from,
       user: filters.date?.to,
-    })  
+    })
   }, [account?.id, filters, getTransactions, page]);
 
   return (
@@ -48,21 +48,21 @@ export default function TransactionsPage() {
                 <div key={tx.id} className="border p-4 rounded-lg space-y-2">
                   <div className="flex justify-between">
                     <div>
-                      <p className="text-sm font-semibold">From: {tx.account.email}</p>
-                      <p className="text-xs text-muted-foreground">{tx.account.address}</p>
+                      <p className="text-sm font-semibold">From: {tx?.account?.email}</p>
+                      <p className="text-xs text-muted-foreground">{tx?.account?.address}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold">To: {tx.user.wallet_address}</p>
-                      <p className="text-xs text-muted-foreground">{tx.blockchain}</p>
+                      <p className="text-sm font-semibold">To: {tx?.user?.wallet_address}</p>
+                      <p className="text-xs text-muted-foreground">{tx?.blockchain}</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <p className="text-sm">Amount: <span className="font-medium">${tx.package.subscription_fee}</span></p>
-                    <Badge variant={tx.status === 'success' ? 'default' : tx.status === 'pending' ? 'secondary' : 'destructive'}>
-                      {tx.status.toUpperCase()}
+                    <p className="text-sm">Amount: <span className="font-medium">${tx?.package?.subscription_fee}</span></p>
+                    <Badge variant={tx?.status === 'success' ? 'default' : tx?.status === 'pending' ? 'secondary' : 'destructive'}>
+                      {tx?.status?.toUpperCase()}
                     </Badge>
                   </div>
-                  <p className="text-xs text-muted-foreground">Created: {format(tx.created_at, 'PPpp')}</p>
+                  <p className="text-xs text-muted-foreground">Created: {format(tx?.created_at, 'PPpp')}</p>
                 </div>
               ))}
               {transactions.list.length === 0 && (

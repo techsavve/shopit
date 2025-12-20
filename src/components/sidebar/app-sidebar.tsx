@@ -4,12 +4,14 @@ import * as React from "react"
 import { Home, LineChart, Accessibility, Wallet, Settings, LifeBuoy, User, Shapes, BookOpen, Currency } from "lucide-react"
 import { NavMain } from "@/components/sidebar/nav-main"
 import { NavUser } from "@/components/sidebar/nav-user"
+import { ThemeToggle } from "@/components/sidebar/theme-toggle"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarSeparator,
 } from "@/components/ui/sidebar"
 import { AccountSwitcher } from "./team-switcher"
 import { useMerchant } from "@/hooks/merchant/merchant"
@@ -31,14 +33,12 @@ export function useNavItems() {
       },
       {
         title: "Documentation",
-        url: "#",
+        url: "/docs/integrate",
         icon: BookOpen,
         isActive: pathname.startsWith("/docs"),
         items: [
-          { title: "Introduction", url: "/docs" },
-          { title: "Get Started", url: "/docs/getting-started" },
-          { title: "Tutorials", url: "/docs/getting-started" },
-          { title: "Changelog", url: "/docs/getting-started" },
+          { title: "Quick Integrate", url: "/docs/integrate" },
+          { title: "Playground", url: "/docs/playground" },
         ],
       },
       {
@@ -81,13 +81,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        { merchant && <AccountSwitcher />}
+        {merchant && <AccountSwitcher />}
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navItems.main} />
       </SidebarContent>
       <SidebarFooter>
-        { merchant && <NavUser user={merchant} />}
+        <ThemeToggle />
+        <SidebarSeparator />
+        {merchant && <NavUser user={merchant} />}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
