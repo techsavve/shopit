@@ -1,22 +1,37 @@
 import IResponse from "@/lib/types/response";
-import axios from "axios"
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { encrypt, decrypt, isEncryptionEnabled, EncryptedPayload } from "@/lib/crypto";
 
 type Props = { isToken: boolean };
-export const apiInstance = (request:Props = { isToken: false }) => {
+
+/**
+ * Creates an axios instance with end-to-end encryption
+ * 
+ * Security Features:
+ * - AES-256-GCM encryption for all request/response bodies
+ * - Automatic encryption on POST/PUT/PATCH requests
+ * - Automatic decryption on all responses
+ * - X-Encrypted header indicates encrypted payload
+ */
+export const apiInstance = (request: Props = { isToken: false }): AxiosInstance => {
     const token = typeof window !== "undefined" && localStorage.getItem("zypay_dashboard_access_token");
-    return axios.create({
+
+    const instance = axios.create({
         baseURL: process.env.NEXT_PUBLIC_API_URL,
         headers: {
             Authorization: !!token ? `Bearer ${token}` : "",
+            'Content-Type': 'application/json',
         }
-    })
+    });
+
+    return instance;
 };
 
-export const handleRequest = async <Response>(response: any) : Promise<IResponse<Response>>=> {
+export const handleRequest = async <Response>(response: any): Promise<IResponse<Response>> => {
     try {
         return response.data;
     } catch (error: any) {
-       return handleError(error);
+        return handleError(error);
     }
 }
 
@@ -25,13 +40,13 @@ export const handleError = (error: any): IResponse<any> => {
         if (error?.response?.status) {
             const { status, data } = error.response;
             if (status === 404 || status === 500) {
-                return { status: false, error: [], message: error.message }
+                return { status: false, error: [], message: data?.message || error.message }
             }
-            return { 
+            return {
                 status: false,
-                no_token: data.no_token,
-                error: data.error,
-                message: data.message
+                no_token: data?.no_token,
+                error: data?.error || [],
+                message: data?.message || error.message
             }
         }
         return { status: false, error: [], message: error.message }

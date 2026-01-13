@@ -12,6 +12,11 @@ export const accountTypes = [
     value: "subscription",
     description: "Set up recurring crypto payments on a weekly/monthly basis.",
   },
+  {
+    name: "Flexible",
+    value: "flexible",
+    description: "Accept dynamic payment amounts without predefined packages.",
+  },
 ]
 
 export const packageTypes = [
@@ -59,8 +64,8 @@ export type ICreateCompanyInfo = z.infer<typeof createCompanyInfoSchema>
 
 // Step 2: Account Setup Schema
 export const createAccountSetupSchema = z.object({
-  account_type: z.enum(["subscription", "one-time"]),
-  package_type: z.enum(["single", "multiple"]),
+  account_type: z.enum(["subscription", "one-time", "flexible"]),
+  package_type: z.enum(["single", "multiple"]).optional(),
 })
 
 export type ICreateAccountSetup = z.infer<typeof createAccountSetupSchema>
@@ -70,15 +75,26 @@ export const createAccountDetailsSchema = createCompanyInfoSchema.merge(createAc
 
 export type ICreateAccountDetails = z.infer<typeof createAccountDetailsSchema>
 
-export const createAccountPackagesSchema = z.object({
-  interval: z.enum(["daily", "weekly", "monthly", "yearly"]),
-  packages: z.array(z.object({
-    name: z.enum(["basic", "pro", "enterprise"]),
-    description: z.string().optional(),
-    amount: z.number(),
-  })),
-  duration: z.string().optional(), // could be number if it’s a time period
+// Package schema for reuse
+export const packageSchema = z.object({
+  name: z.enum(["basic", "pro", "enterprise"]),
+  description: z.string().optional(),
+  amount: z.number(),
 })
+
+export const createAccountPackagesSchema = z.object({
+  // For one-time accounts: single interval (optional, for backwards compat)
+  interval: z.enum(["daily", "weekly", "monthly", "yearly"]).optional(),
+  // For one-time accounts: flat packages array
+  packages: z.array(packageSchema).optional(),
+  // For subscription accounts: multiple intervals selected
+  intervals: z.array(z.enum(["daily", "weekly", "monthly", "yearly"])).optional(),
+  // For subscription accounts: packages per interval
+  interval_packages: z.record(z.string(), z.array(packageSchema)).optional(),
+  duration: z.string().optional(),
+})
+
+export type IPackageSchema = z.infer<typeof packageSchema>
 
 export type ICreateAccountPackages = z.infer<typeof createAccountPackagesSchema>
 
@@ -96,7 +112,7 @@ const tokenInfoSchema = z.object({
 
 const createAccountFirstConfigurationSchema = z
   .object({
-    webhook_url: z.string().url("Webhook URL must be a valid URL"),
+    webhook_url: z.string().url("Webhook URL must be a valid URL").optional().or(z.literal("")),
     supported_chains: z
       .array(z.enum(["BSC", "Ton"]))
       .min(1, "Select at least one chain"),
@@ -143,16 +159,14 @@ export const updateAccountSchema = z.object({
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name cannot exceed 50 characters"),
   description: z.string(),
-  account_type: z.enum(["subscription", "one-time"]),
-  package_type: z.enum(["single", "multiple"]),
-  interval: z.enum(["daily", "weekly", "monthly", "yearly"]),
-  packages: z.array(z.object({
-    name: z.enum(["basic", "pro", "enterprise"]),
-    description: z.string().optional(),
-    amount: z.number(),
-  })),
-  duration: z.string().optional(), // could be number if it’s a time period
-})
+  account_type: z.enum(["subscription", "one-time", "flexible"]),
+  package_type: z.enum(["single", "multiple"]).optional(),
+  interval: z.enum(["daily", "weekly", "monthly", "yearly"]).optional(),
+  packages: z.array(packageSchema).optional(),
+  intervals: z.array(z.enum(["daily", "weekly", "monthly", "yearly"])).optional(),
+  interval_packages: z.record(z.string(), z.array(packageSchema)).optional(),
+  duration: z.string().optional(),
+}) // could be number if it’s a time period
 
 export type IUpdateAccount = z.infer<typeof updateAccountSchema>
 
@@ -160,7 +174,7 @@ export type IUpdateAccount = z.infer<typeof updateAccountSchema>
 
 export const updateAccountWalletSchema = z
   .object({
-    webhook_url: z.string().url("Webhook URL must be a valid URL"),
+    webhook_url: z.string().url("Webhook URL must be a valid URL").optional().or(z.literal("")),
     supported_chains: z
       .array(z.enum(["BSC", "Ton"]))
       .min(1, "Select at least one chain"),

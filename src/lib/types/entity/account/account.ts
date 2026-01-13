@@ -32,10 +32,12 @@ export type IPackage = {
 }
 
 export type IAccountDetails = {
-    account_type: IAccountType;
+    account_type: IAccountType | 'flexible';
     package_type: IPackageType;
-    interval: IInterval;
+    interval?: IInterval;
+    intervals?: IInterval[];
     packages: IPackage[];
+    interval_packages?: Record<string, IPackage[]>;
     duration?: string;
 }
 

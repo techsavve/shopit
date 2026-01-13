@@ -51,6 +51,16 @@ export function PageHeader() {
           title: "Billing",
           description: "View and manage your billing information and payment methods"
         }
+      case "/settings/payout":
+        return {
+          title: "Payout Settings",
+          description: "Configure your payout wallets and disbursement settings"
+        }
+      case "/transactions/payouts":
+        return {
+          title: "Payouts",
+          description: "Manage and track your payout disbursements"
+        }
       case "/settings/display":
         return {
           title: "Display Settings",
@@ -60,10 +70,10 @@ export function PageHeader() {
         // Extract title from pathname for dynamic routes
         const segments = pathname.split('/').filter(Boolean)
         const lastSegment = segments[segments.length - 1]
-        const title = lastSegment 
+        const title = lastSegment
           ? lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1).replace(/-/g, ' ')
           : "Page"
-        
+
         return {
           title,
           description: `Manage your ${title.toLowerCase()}`

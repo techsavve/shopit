@@ -4,8 +4,9 @@ import "./globals.css";
 import { Suspense } from "react";
 import { Providers } from "./providers";
 import '@mantine/core/styles.css';
+import { NewRelicBrowser } from "@/components/analytics/newrelic";
 
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400","500","600","700","800"], display: 'swap' });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: 'swap' });
 
 export const metadata: Metadata = {
   title: "Zypay - Secure Crypto Payment Platform - App",
@@ -66,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <NewRelicBrowser />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

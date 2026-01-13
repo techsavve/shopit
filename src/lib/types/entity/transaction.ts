@@ -3,17 +3,17 @@ import { IBlockchainType } from "./wallet";
 
 export type IGetTransaction = { id: string; };
 
-export type IGetTransactions = { 
+export type IGetTransactions = {
     account_id: string;
     status?: string;
-    account?: Date;
-    user?: Date;
+    from?: Date;
+    to?: Date;
     blockchain?: IBlockchainType[];
     amount_min?: number;
     amount_max?: number;
     page?: number;
     limit?: number;
-
+    transaction_type?: 'Sandbox' | 'Production';
 };
 
 export type ISecureTransaction = {
@@ -24,14 +24,14 @@ export type ISecureTransaction = {
         address: string
         // user_wallet: IUserWallet
     };
-    user: { 
+    user: {
         wallet_address: string;
         account_wallet?: IAccountWallet
     };
     blockchain: 'Ton' | 'BSC';
     timeout: number;
     package: IPackage;
-    status: 'success' | 'pending' | 'failed';
+    status: 'Success' | 'Pending' | 'Failed';
     created_at: Date;
     updated_at: Date;
 }

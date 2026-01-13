@@ -2,15 +2,12 @@ import { IBlockchainType, IGeneralWallet, IWallet } from "./wallet";
 
 export type IGetSubscriber = { id: string; };
 
-export type IGetSubscribers = { 
+export type IGetSubscribers = {
     account_id: string;
-    account?: Date;
-    user?: Date;
-    amount_min?: number;
-    amount_max?: number;
+    from?: Date;
+    to?: Date;
     page?: number;
     limit?: number;
-
 };
 
 export type IGeneralUserWallet = {
@@ -18,7 +15,12 @@ export type IGeneralUserWallet = {
     email: string;
     account_id: string;
     type: 'sandbox' | 'production';
-    wallet: IGeneralWallet;
+    wallet: {
+        id: string;
+        blockchain: string;
+        address: string;
+        is_active: boolean;
+    };
     created_at: Date;
     updated_at: Date;
 }
