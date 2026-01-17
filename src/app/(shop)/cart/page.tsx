@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CartPage() {
     // Sample cart items - will be replaced with state/context
     const cartItems = [
@@ -19,9 +21,9 @@ export default function CartPage() {
                     {cartItems.length === 0 ? (
                         <div className="text-center py-12 border rounded-lg">
                             <p className="text-muted-foreground mb-4">Your cart is empty</p>
-                            <a href="/products" className="text-primary hover:underline">
+                            <Link href="/products" className="text-primary hover:underline">
                                 Continue Shopping
-                            </a>
+                            </Link>
                         </div>
                     ) : (
                         <div className="space-y-4">
@@ -64,19 +66,19 @@ export default function CartPage() {
                             </div>
                         </div>
 
-                        <a
+                        <Link
                             href="/checkout"
                             className="block w-full py-3 px-6 bg-primary text-primary-foreground rounded-md font-semibold text-center hover:bg-primary/90"
                         >
                             Proceed to Checkout
-                        </a>
+                        </Link>
 
-                        <a
+                        <Link
                             href="/products"
                             className="block w-full py-3 px-6 border rounded-md text-center mt-3 hover:bg-muted"
                         >
                             Continue Shopping
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -91,9 +91,9 @@ export default function SignUpPage() {
               <input type="checkbox" id="terms" className="rounded mt-1" required />
               <label htmlFor="terms" className="text-sm text-muted-foreground">
                 I agree to the{" "}
-                <a href="/terms" className="text-primary hover:underline">Terms of Service</a>
+                <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>
                 {" "}and{" "}
-                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
               </label>
             </div>
 

@@ -32,9 +32,9 @@ export default function SignInPage() {
                 <label htmlFor="password" className="block text-sm font-medium">
                   Password
                 </label>
-                <a href="/forgot-password" className="text-sm text-primary hover:underline">
+                <Link href="/forgot-password" className="text-sm text-primary hover:underline">
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <input
                 type="password"

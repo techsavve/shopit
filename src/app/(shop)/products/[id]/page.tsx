@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ProductDetailPageProps {
     params: Promise<{ id: string }>;
 }
@@ -81,11 +83,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 <h2 className="text-2xl font-bold mb-6">Related Products</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[1, 2, 3, 4].map((item) => (
-                        <a key={item} href={`/products/${item}`} className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                        <Link key={item} href={`/products/${item}`} className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
                             <div className="aspect-square bg-muted rounded-md mb-4" />
                             <h3 className="font-semibold mb-1">Related Product</h3>
                             <p className="font-bold">$79.99</p>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </section>

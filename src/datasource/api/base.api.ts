@@ -1,14 +1,11 @@
 import IResponse from "@/lib/types/response";
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { encrypt, decrypt, isEncryptionEnabled, EncryptedPayload } from "@/lib/crypto";
-
+import axios, { AxiosInstance } from "axios";
 type Props = { isToken: boolean };
 
 /**
  * Creates an axios instance with end-to-end encryption
  * 
  * Security Features:
- * - AES-256-GCM encryption for all request/response bodies
  * - Automatic encryption on POST/PUT/PATCH requests
  * - Automatic decryption on all responses
  * - X-Encrypted header indicates encrypted payload
