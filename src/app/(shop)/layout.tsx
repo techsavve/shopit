@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode } from "react";
 
 interface ShopLayoutProps {
@@ -11,11 +12,11 @@ export default function ShopLayout({ children }: ShopLayoutProps) {
             <header className="border-b">
                 <div className="container mx-auto px-4 py-4">
                     <nav className="flex items-center justify-between">
-                        <a href="/" className="text-2xl font-bold">StoreIt</a>
+                        <Link href="/" className="text-2xl font-bold">StoreIt</Link>
                         <div className="flex items-center gap-6">
-                            <a href="/products" className="hover:text-primary">Products</a>
-                            <a href="/cart" className="hover:text-primary">Cart</a>
-                            <a href="/login" className="hover:text-primary">Login</a>
+                            <Link href="/products" className="hover:text-primary">Products</Link>
+                            <Link href="/cart" className="hover:text-primary">Cart</Link>
+                            <Link href="/login" className="hover:text-primary">Login</Link>
                         </div>
                     </nav>
                 </div>
