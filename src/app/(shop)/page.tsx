@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+
+
 export default function HomePage() {
     return (
         <div className="container mx-auto px-4 py-8">
@@ -49,9 +51,13 @@ export default function HomePage() {
                         >
                             <h3 className="font-semibold">{category}</h3>
                         </Link>
+
+                      
+
                     ))}
                 </div>
             </section>
+
         </div>
     );
 }

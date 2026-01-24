@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TestControls } from "@/components/dev/TestControls"
 
 export default function ProductsPage() {
     return (
