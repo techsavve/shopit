@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { Providers } from "./providers";
 import '@mantine/core/styles.css';
 
+
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: 'swap' });
 
 export const metadata: Metadata = {
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -78,6 +79,8 @@ export default function RootLayout({
             {children}
           </Providers>
         </Suspense>
+
+
       </body>
     </html>
   );
